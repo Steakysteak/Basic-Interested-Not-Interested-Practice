@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import data from './components/data';
+import Tours from './components/Tours';
 
 function App() {
+  const [tours, setTours] = useState(data);
+
+  function removetour (id) {
+    const newTours = tours.filter((item) => item.id !== id);
+    setTours(newTours);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h1>Cities For Trip</h1>
+    <Tours tours={tours} removetour={removetour}></Tours>
+    </>
   );
 }
 
